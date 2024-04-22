@@ -7,7 +7,7 @@ export const googleSignup = async (req, res) => {
         
         const { name, email, profilePic } = req.body
         let user = await User.findOne({ email })
-        console.log(req.headers);
+        console.log(name, email, profilePic);
 
         if (user) {
             const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);

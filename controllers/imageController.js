@@ -26,3 +26,23 @@ export const saveImage = async (req, res) => {
         })
     }
 }
+export const getAllImages = async (req, res) => {
+    try {
+
+        const images = await Image.find({
+            user: req.user._id
+        })
+
+        res.status(200).json({
+            success: true,
+            images,
+            message: "Image uploaded successfully"
+        })
+
+    } catch (error) {
+        res.status(404).json({
+            success: false,
+            message: "Cannot upload image"
+        })
+    }
+}

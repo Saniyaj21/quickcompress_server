@@ -28,7 +28,7 @@ cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET
-  })
+})
 
 
 
@@ -37,7 +37,10 @@ server.use('/api/user', userRouter)
 server.use('/api/image', imageRouter)
 
 server.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.json({
+        success: true,
+        messgae: "response from server"
+    });
 })
 
 server.listen(process.env.PORT, () => {
