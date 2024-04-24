@@ -16,7 +16,6 @@ const userSchema = new mongoose.Schema({
     },
     token: {
         type: String,
-        select: false
     },
     createdAt: {
         type: Date,
