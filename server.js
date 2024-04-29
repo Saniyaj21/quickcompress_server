@@ -8,13 +8,34 @@ import { v2 as cloudinary } from 'cloudinary';
 // routers
 import userRouter from './routes/userRoute.js'
 import imageRouter from './routes/imageRoute.js'
+import bodyParser from 'body-parser';
+import fileUpload from 'express-fileupload';
 
 
 const server = express();
 conntectDB()
 
 // middlewares
-server.use(express.json())
+server.use(express.json(
+    {
+        limit: '50mb',
+        extended: true,
+    }
+))
+server.use(bodyParser.urlencoded({
+    extended: true,
+    limit: '50mb',
+}))
+server.use(bodyParser.json({
+    limit: '50mb',
+}))
+
+server.use(fileUpload({
+    limits: {
+        fileSize: 50 * 1024 * 1024
+    }
+}))
+
 server.use(
     cors({
         origin: process.env.FRONTEND_URL,
