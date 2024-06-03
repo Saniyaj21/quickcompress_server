@@ -8,7 +8,7 @@ export const isAuthenticate = async (req, res, next) => {
 
         if (!token) {
 
-            res.status(400).json({
+            return res.status(400).json({
                 success: false,
                 message: "Login required",
             })
@@ -23,7 +23,7 @@ export const isAuthenticate = async (req, res, next) => {
         next()
 
     } catch (error) {
-        res.status(400).json({
+        return res.status(400).json({
             success: false,
             message: "Login required",
         })
